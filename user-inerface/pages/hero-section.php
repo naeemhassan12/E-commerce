@@ -9,7 +9,6 @@
     object-fit: cover;
 }
 </style>
-
 <section id="home" class="hero position-relative">
     <video autoplay muted loop playsinline class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover">
         <source src="assets/image/e-commerce.mp4" type="video/mp4">

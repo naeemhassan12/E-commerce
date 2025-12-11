@@ -8,7 +8,6 @@
                 <p class="fs-3">120</p>
             </div>
         </div>
-
         <div class="col-md-4">
             <div class="card p-3 shadow-sm">
                 <h4>Total Sales</h4>

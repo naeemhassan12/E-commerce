@@ -1,10 +1,16 @@
 CREATE TABLE `products` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `price` DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-  `image` VARCHAR(255) DEFAULT NULL,      -- store path like: assets/image/black.jpg
-  `description` TEXT DEFAULT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `product_name` VARCHAR(255) NOT NULL,
+    `description` TEXT,
+    `price` DECIMAL(10,2) NOT NULL,
+    `discount_price` DECIMAL(10,2) DEFAULT NULL,
+    `category_id` INT(11) DEFAULT NULL,
+    `brand` VARCHAR(100) DEFAULT NULL,
+    `stock` INT(11) NOT NULL DEFAULT 0,
+    `image` VARCHAR(255) DEFAULT NULL,
+    `additional_images` TEXT,
+    `status` ENUM('active','inactive') NOT NULL DEFAULT 'active',
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

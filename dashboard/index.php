@@ -10,40 +10,39 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
     <?php
     switch ($page) {
 
-        // Dashboard Page
-        // case 'dashboard':
-        //     include "inc/dashboard.php";
-        //     break;
+        //Dashboard Page
+        case 'dashboard':
+            include "inc/dashboard.php";
+            break;
 
         // Product Page
         case 'product':
-            include "inc/product.php";
+            include "pages/product.php";
             break;
 
         // Orders Page
-        // case 'order':
-        //     include "inc/order.php";
-        //     break;
+        case 'order':
+            include "pages/order.php";
+            break;
 
         // Daily Sales Report
-        // case 'daily_report':
-        //     include "inc/daily_report.php";
-        //     break;
+        case 'daily_report':
+            include "pages/daily_report.php";
+            break;
 
         // Monthly Sales Report
-        // case 'monthly_report':
-        //     include "inc/monthly_report.php";
-        //     break;
-
+        case 'monthly_report':
+            include "pages/monthly_report.php";
+            break;
         // Payment Page
-        // case 'payment':
-        //     include "inc/payment.php";
-        //     break;
+        case 'payment':
+            include "pages/payment.php";
+            break;
 
         // Backup Page
-        // case 'backup':
-        //     include "inc/backup.php";
-        //     break;
+        case 'backup':
+            include "pages/backup.php";
+            break;
 
         // If page not found
         default:

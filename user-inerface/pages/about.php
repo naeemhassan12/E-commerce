@@ -6,7 +6,6 @@
             <p class="text-muted fs-5">Committed to providing top-quality products at affordable prices with fast and
                 reliable delivery.</p>
         </div>
-
         <!-- About Features / Highlights -->
         <div class="row text-center g-4">
             <div class="col-md-4">
@@ -43,5 +42,4 @@
     </div>
 </section>
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

@@ -40,7 +40,6 @@
             <div class="col-lg-6">
                 <div class="shadow-sm bg-white p-4 rounded-4">
                     <h5 class="fw-bold mb-4">Send Us a Message</h5>
-
                     <form>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Full Name</label>
