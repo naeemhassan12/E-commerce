@@ -1,38 +1,33 @@
 <?php
 include "../config/db.php";
-session_start();
+//session_start();
 
 if (isset($_POST['AddProducts'])) {
-
     $ProductName  = $_POST['productName'];
     $ProductPrice = $_POST['productPrice'];
 
-    
     $imageName = $_FILES['productImage']['name'];
     $imageTmp  = $_FILES['productImage']['tmp_name'];
 
-    $destination = "assets/image/" . $imageName;
+    // $destination = "uploads/" . $imageName;
+    $uploadFolder = "../uploads/" . $imageName;  // save outside dashboard
+    $imagePath = "uploads/" . $imageName;       // save in DB
 
-    if (move_uploaded_file($imageTmp, $destination)) {
-
+    if (move_uploaded_file($imageTmp, $uploadFolder)) {
         $query = "INSERT INTO products (productName, productPrice, productImage) VALUES (?, ?, ?)";
         $stmt  = mysqli_prepare($conn, $query);
 
         if ($stmt) {
-
-            mysqli_stmt_bind_param($stmt, "sss", $ProductName, $ProductPrice, $destination);
-
+            mysqli_stmt_bind_param($stmt, "sss", $ProductName, $ProductPrice, $imagePath);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
-
             echo "<script>alert('Product Inserted Successfully!');</script>";
         }
     }
 }
-
 $products = [];
-$query = "SELECT * FROM products ORDER BY id ASC";
-$result = mysqli_query($conn, $query);
+$query2 = "SELECT * FROM products ORDER BY id ASC";
+$result = mysqli_query($conn, $query2);
 
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -66,12 +61,12 @@ if ($result && mysqli_num_rows($result) > 0) {
             </thead>
             <tbody>
                 <?php foreach ($products as $prod): ?>
-                <tr>
-                    <td><?= $prod['id']; ?></td>
-                    <td><?= $prod['productName']; ?></td>
-                    <td><?= $prod['productPrice']; ?></td>
-                    <td><img src="<?= $prod['productImage']; ?>" width="70"></td>
-                </tr>
+                    <tr>
+                        <td><?= $prod['id']; ?></td>
+                        <td><?= $prod['productName']; ?></td>
+                        <td><?= $prod['productPrice']; ?></td>
+                        <td><img src="<?= $prod['productImage']; ?>" width="70"></td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

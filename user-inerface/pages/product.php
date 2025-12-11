@@ -18,8 +18,8 @@
             <?php foreach($products as $product): ?>
             <div class="col-md-3">
                 <div class="card product-card">
-                    <img src="assets/image/<?= $product['productImage']; ?> " class="card-img-top"
-                        alt="<?= $product['productName']; ?> gggggggggggg">
+                    <img src="<?= $product['productImage']; ?>" class="card-img-top"
+                        alt="gggg "/>
 
                     <div class="card-body text-center">
                         <h5 class="card-title">
