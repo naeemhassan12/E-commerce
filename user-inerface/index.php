@@ -1,6 +1,7 @@
 <?php
 include "inc/header.php";
 include "inc/navbar.php";
+
 // Get page parameter (default: dashboard)
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 

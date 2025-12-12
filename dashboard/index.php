@@ -24,7 +24,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
         case 'order':
             include "pages/order.php";
             break;
-
+        case 'order_items':
+            include "pages/order_items.php";
+            break;
         // Daily Sales Report
         case 'daily_report':
             include "pages/daily_report.php";

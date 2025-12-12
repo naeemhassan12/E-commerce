@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
                     <?php endif; ?>
 
                     <?php if($product['stock'] > 0): ?>
-                    <a href="#" class="btn btn-primary mt-auto">Add to Cart</a>
+                    <a href="" class="btn btn-primary mt-auto">Add to Cart</a>
                     <?php else: ?>
                     <span class="badge bg-danger mt-auto">Out of Stock</span>
                     <?php endif; ?>
@@ -45,3 +45,5 @@ if ($result->num_rows > 0) {
         <?php endif; ?>
     </div>
 </div>
+
+

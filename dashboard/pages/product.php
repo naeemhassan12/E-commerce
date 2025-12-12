@@ -40,11 +40,7 @@ if (isset($_POST['add_product'])) {
     }
 }
 
-// =====================================
-// UPDATE PRODUCT
-// =====================================
 if (isset($_POST['update_product'])) {
-
     $id             = $_POST['update_id'];
     $name           = $_POST['product_name'];
     $description    = $_POST['description'];
@@ -53,12 +49,10 @@ if (isset($_POST['update_product'])) {
     $stock          = $_POST['stock'];
     $status         = $_POST['status'];
     $brand          = $_POST['brand'];
-
     // Get old image
     $product = $conn->query("SELECT * FROM products WHERE id=$id")->fetch_assoc();
     $imagePath = $product['image'];
-
-    // If new image selected
+   
     if (!empty($_FILES['image']['name'])) {
 
         $imageName = time() . "_" . $_FILES['image']['name'];
@@ -68,7 +62,6 @@ if (isset($_POST['update_product'])) {
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
-
         $newPath = $uploadDir . $imageName;
 
         if (move_uploaded_file($imageTmp, $newPath)) {
@@ -80,14 +73,12 @@ if (isset($_POST['update_product'])) {
             $imagePath = "uploads/" . $imageName;
         }
     }
-
     $update = $conn->prepare("
         UPDATE products SET 
             product_name=?, description=?, price=?, discount_price=?, 
             stock=?, status=?, brand=?, image=? 
         WHERE id=?
     ");
-
     $update->bind_param(
         "ssddisssi",
         $name,
@@ -104,9 +95,6 @@ if (isset($_POST['update_product'])) {
     $update->execute();
 }
 
-// =====================================
-// DELETE PRODUCT
-// =====================================
 if (isset($_GET['delete'])) {
 
     $id = $_GET['delete'];
@@ -119,25 +107,12 @@ if (isset($_GET['delete'])) {
     $conn->query("DELETE FROM products WHERE id=$id");
 }
 
-// =====================================
-// FETCH ALL PRODUCTS
-// =====================================
 $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 $products = [];
 while ($row = $result->fetch_assoc()) {
     $products[] = $row;
 }
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Products Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-
     <div class="container my-5">
         <h2 class="mb-4">Products Dashboard</h2>
 
@@ -365,7 +340,3 @@ while ($row = $result->fetch_assoc()) {
         myModal.show();
     }
     </script>
-
-</body>
-
-</html>
