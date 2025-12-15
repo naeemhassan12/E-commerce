@@ -119,7 +119,7 @@ if(isset($_POST['submit']))
               </div>
 
               <!-- Right side -->
-              <a href="login.php" class="text-decoration-none">Login here</a>
+              <!-- <a href="login.php" class="text-decoration-none">Login here</a> -->
 
           </div>
 

@@ -1,3 +1,26 @@
+
+<?php
+  include "../config/db.php";
+  
+  $stmt = "SELECT * FROM order";
+  $result = mysqli_query($conn,$stmt);
+
+  $sql = mysqli_query ("SELECT 
+              o.oder_id,
+              user_id AS full_name,
+              o.total_amount
+              o.discount_amount,
+              o.final_amount,
+              o.payment_method,
+              o.created_at,
+              FROM order o 
+              INNER JOIN users u ON o.user_id = u.id
+              ORDER BY o.created at ASC
+  
+  ");
+
+
+?>
 <div class="container-fluid px-4 mt-4">
     <h2 class="mb-4">Orders Management</h2>
 
@@ -13,39 +36,23 @@
                             <th>Order ID</th>
                             <th>User ID</th>
                             <th>Total Amount</th>
+                            <th>Discount_Amount</th>
                             <th>Final Amount</th>
                             <th>Payment Method</th>
-                            <th>Payment Status</th>
-                            <th>Order Status</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>#1001</td>
-                            <td>U101</td>
-                            <td>Rs. 5000</td>
-                            <td>Rs. 4500</td>
-                            <td><span class="badge bg-info text-dark">Credit Card</span></td>
-                            <td><span class="badge bg-success">Paid</span></td>
-                            <td><span class="badge bg-secondary">Processing</span></td>
-                            <td>2025-12-11 12:30 PM</td>
                             <td>
                                 <button class="btn btn-sm btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal">View</button>
                                 <button class="btn btn-sm btn-warning mb-1" data-bs-toggle="modal" data-bs-target="#editOrderModal">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
+                            </td> 
                         </tr>
                         <tr>
-                            <td>#1002</td>
-                            <td>U102</td>
-                            <td>Rs. 2500</td>
-                            <td>Rs. 2500</td>
-                            <td><span class="badge bg-info text-dark">Cash on Delivery</span></td>
-                            <td><span class="badge bg-warning text-dark">Pending</span></td>
-                            <td><span class="badge bg-secondary">Pending</span></td>
-                            <td>2025-12-10 09:45 AM</td>
+                           
                             <td>
                                 <button class="btn btn-sm btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#viewOrderModal">View</button>
                                 <button class="btn btn-sm btn-warning mb-1" data-bs-toggle="modal" data-bs-target="#editOrderModal">Edit</button>
@@ -68,14 +75,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p><strong>Order ID:</strong> #1001</p>
+        <!-- <p><strong>Order ID:</strong> #1001</p>
         <p><strong>User ID:</strong> U101</p>
         <p><strong>Total Amount:</strong> Rs. 5000</p>
+        <p> <strong>Discount_Amount</strong>500 </p>
         <p><strong>Final Amount:</strong> Rs. 4500</p>
         <p><strong>Payment Method:</strong> Credit Card</p>
-        <p><strong>Payment Status:</strong> Paid</p>
-        <p><strong>Order Status:</strong> Processing</p>
-        <p><strong>Created At:</strong> 2025-12-11 12:30 PM</p>
+        
+        <p><strong>Created At:</strong> 2025-12-11 12:30 PM</p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -105,28 +112,12 @@
           <div class="mb-3">
             <label for="editPaymentMethod" class="form-label">Payment Method</label>
             <select class="form-select" id="editPaymentMethod" required>
-              <option value="Credit Card" selected>Credit Card</option>
-              <option value="Cash on Delivery">Cash on Delivery</option>
-              <option value="PayPal">PayPal</option>
+              <option value="Cash on Delivery">Cash On Delivery</option>
+              <option value="EasyPasia">EasyPasia</option>
+              <option value="JazzCash">JazzCash</option>
             </select>
           </div>
-          <div class="mb-3">
-            <label for="editPaymentStatus" class="form-label">Payment Status</label>
-            <select class="form-select" id="editPaymentStatus" required>
-              <option value="Paid" selected>Paid</option>
-              <option value="Pending">Pending</option>
-              <option value="Failed">Failed</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="editOrderStatus" class="form-label">Order Status</label>
-            <select class="form-select" id="editOrderStatus" required>
-              <option value="Processing" selected>Processing</option>
-              <option value="Pending">Pending</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
-          </div>
+         
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>

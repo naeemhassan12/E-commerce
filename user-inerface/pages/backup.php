@@ -75,8 +75,8 @@
 
 <div class="container py-5">
   <div class="mb-5 text-center">
-    <h2 class="section-title">Professional Multi-Cart System</h2>
-    <p class="muted">Modern UI • Smooth UX • Multi-Cart Workflow • Standard Layout</p>
+    <!-- <h2 class="section-title">Professional Multi-Cart System</h2>
+    <p class="muted">Modern UI • Smooth UX • Multi-Cart Workflow • Standard Layout</p> -->
   </div>
 
   <div class="row g-4">

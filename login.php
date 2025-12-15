@@ -3,7 +3,7 @@
 
    if(isset($_POST['submit']))
    {
-    $username = $_POST['name'];
+    $username = $_POST['email'];
     $password = $_POST['password'];
 
     $stmt = "SELECT * FROM register";
@@ -16,12 +16,12 @@
             // Start session and set session variables
             session_start();
             $_SESSION['student_id'] = $row['id'];
-            $_SESSION['student_email'] = $row['email'];
-            $_SESSION['student_name'] = $row['name'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['password'] = $row['password'];
 
             echo '<div class="alert alert-success" role="alert">Login Successful! Welcome '.$row['name'].'</div>';
-            header("location: index.php?page=hero-section");
-            // echo '<meta http-equiv="refresh" content="2;url=dashboard.php">';
+            header("location: dashboard/index.php?page=users");
+            //echo '<meta http-equiv="refresh" content="2;url=index.php">';
         } else {
             echo '<div class="alert alert-danger" role="alert">Incorrect Password!</div>';
         }
@@ -95,10 +95,10 @@
     <div class="login-card">
         <h3 class="text-center mb-4">Welcome Back</h3>
         <p class="text-center text-muted mb-4">Sign in to your account</p>
-        <form>
+        <form method="POST" action= "">
             <div class="form-group">
                 <i class="fa fa-user form-icon"></i>
-                <input type="text" name="username" class="form-control ps-5" placeholder="Username" required>
+                <input type="text" name="email" class="form-control ps-5" placeholder="Email@gmail.com" required>
             </div>
             <div class="form-group">
                 <i class="fa fa-lock form-icon"></i>

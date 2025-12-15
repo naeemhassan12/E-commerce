@@ -14,7 +14,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
         case 'dashboard':
             include "inc/dashboard.php";
             break;
-
+        // user page
+        case 'users':
+            include "pages/users.php";
+            break;
         // Product Page
         case 'product':
             include "pages/product.php";
