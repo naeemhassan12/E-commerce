@@ -2,6 +2,12 @@
 include "inc/header.php";
 include "inc/sidebar.php";
 
+if (isset($_GET['page'])) {
+    if ($_GET['page'] == 'backup') {
+        //include 'backup.php';
+    }
+}
+
 // Get page parameter (default: dashboard)
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 ?>
