@@ -193,13 +193,13 @@ while ($row = $result->fetch_assoc()) {
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Stock</th>
                     <th>Status</th>
                     <th>Brand</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -210,17 +210,18 @@ while ($row = $result->fetch_assoc()) {
                 <tr>
                     <td><?= $product['id']; ?></td>
 
-                    <td>
-                        <img src="../<?= $product['image']; ?>" width="60" height="60">
-                    </td>
+                    
 
                     <td><?= $product['product_name']; ?></td>
                     <td>$<?= $product['price']; ?></td>
                     <td><?= $product['discount_price'] ? '$' . $product['discount_price'] : '-'; ?></td>
                     <td><?= $product['stock']; ?></td>
                     <td><?= ucfirst($product['status']); ?></td>
+                    
                     <td><?= $product['brand']; ?></td>
-
+                        <td>
+                        <img src="../<?= $product['image']; ?>" width="60" height="60">
+                    </td>
                     <td>
                         <button class="btn btn-primary btn-sm" onclick='openEditModal(<?= json_encode($product) ?>)'>
                             Edit
