@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
+
+    header("Location: ../login.php");
+    exit();
+
+}
+
 include "inc/header.php";
 include "inc/sidebar.php";
 
@@ -10,6 +19,7 @@ if (isset($_GET['page'])) {
 
 // Get page parameter (default: dashboard)
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+
 ?>
 
 <div class="content">
@@ -54,7 +64,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
         case 'backup':
             include "pages/backup.php";
             break;
-
+        case 'logout':
+            include "pages/logout.php";
+            break;
         // If page not found
         default:
             echo "<h3 class='text-danger p-4'>404 - Page Not Found!</h3>";

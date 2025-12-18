@@ -10,4 +10,5 @@
     <a href="index.php?page=monthly_report">Monthly Sales Report</a>
     <a href="index.php?page=payment">Payment</a>
     <a href="index.php?page=backup">Backup</a>
+    <a href="index.php?page=logout">LogOut</a>
 </div>

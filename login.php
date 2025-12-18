@@ -1,41 +1,43 @@
 <?php
-   include "config/db.php";
+include "config/db.php";
+ session_start();
 
-   if(isset($_POST['submit']))
-   {
-    $username = $_POST['email'];
+if (isset($_SESSION['email'])) {
+    header("Location: dashboard/index.php");
+     exit();
+}
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = "SELECT * FROM register";
-    $sql = mysqli_query($conn,$stmt);
+    $stmt = "SELECT * FROM register WHERE email = '$email' LIMIT 1";
+    $sql = mysqli_query($conn, $stmt);
 
-    if(mysqli_num_rows($sql) > 0)
-    {
+    if (mysqli_num_rows($sql) == 1) {
         $row = mysqli_fetch_assoc($sql);
-        if($password === $row['password']) {
-            // Start session and set session variables
-            session_start();
+
+        if ($password === $row['password']) {
             $_SESSION['student_id'] = $row['id'];
             $_SESSION['email'] = $row['email'];
-            $_SESSION['password'] = $row['password'];
 
-            echo '<div class="alert alert-success" role="alert">Login Successful! Welcome '.$row['name'].'</div>';
-            header("location: dashboard/index.php?page=users");
-            //echo '<meta http-equiv="refresh" content="2;url=index.php">';
+            header("Location: dashboard/index.php");
+            exit();
         } else {
-            echo '<div class="alert alert-danger" role="alert">Incorrect Password!</div>';
+            echo "Incorrect Password!";
         }
     } else {
-        echo '<div class="alert alert-danger" role="alert">No user found with this email!</div>';
+        echo "User not found!";
     }
-}   
+}
 ?>
-    <title>Login Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+
+<title>Login Page</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
     body {
         height: 100vh;
         background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -87,15 +89,14 @@
     .login-card a:hover {
         text-decoration: underline;
     }
-    </style>
+</style>
 </head>
 
 <body>
-
     <div class="login-card">
         <h3 class="text-center mb-4">Welcome Back</h3>
         <p class="text-center text-muted mb-4">Sign in to your account</p>
-        <form method="POST" action= "">
+        <form method="POST" action="">
             <div class="form-group">
                 <i class="fa fa-user form-icon"></i>
                 <input type="text" name="email" class="form-control ps-5" placeholder="Email@gmail.com" required>
